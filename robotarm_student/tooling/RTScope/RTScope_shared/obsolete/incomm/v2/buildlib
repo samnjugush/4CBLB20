@@ -1,0 +1,8 @@
+gcc -fPIC -c libincomm.c
+ld -shared -soname libincomm.so.1 -o libincomm.so.1.0 -lc libincomm.o -lm
+mv libincomm.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libincomm.so.1.0 libincomm.so
+ln -sf libincomm.so.1.0 libincomm.so.1

@@ -1,0 +1,4 @@
+R richting=150 tanden
+X richting=100 tanden
+Z richting=100 tanden
+overige kleine tandwieltjes=9 tanden

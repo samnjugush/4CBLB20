@@ -1,0 +1,462 @@
+/**
+ * This object is designed as a struct. It will contain data concerning the visit of the current user and data on the current page.
+ */
+var Vertoshop = new function () {
+    var order    = new Order(ORDER_JSON);
+    var product  = new Product(PRODUCT_JSON);
+    var category = new Category(CATEGORY_JSON);
+    var user     = new User(USER_JSON);
+    var webshop  = new Webshop(WEBSHOP_JSON);
+
+    /**
+     * Returns an Order object. Only works if the customer has an active order.
+     * @returns {Order}
+     */
+    this.getOrder = function getOrder () {
+        return order;
+    };
+
+    /**
+     * Returns a Product object. Only works if on a Product page.
+     * @returns {Product}
+     */
+    this.getProduct = function getProduct () {
+        return product;
+    };
+
+    /**
+     * Returns a Category object. Only works if on a Category page.
+     * @returns {Category}
+     */
+    this.getCategory = function getCategory () {
+        return category;
+    };
+
+    /**
+     * Returns a User object. Returns null if the user isn't logged in.
+     * @returns {User}
+     */
+    this.getUser = function getUser () {
+        return user;
+    };
+
+    /**
+     * Returns a Webshop object. This object is available on all pages.
+     * @returns {Webshop}
+     */
+    this.getWebshop = function getWebshop () {
+        return webshop;
+    };
+
+
+    function Order (json) {
+        var orderData = JSON.parse(json);
+
+        /**
+         * Returns Id of this object or null if not available. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/orders/:id
+         *
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (orderData === null) ? null : orderData.id;
+        };
+
+        /**
+         * Returns an array with a collection or orderRows. If not order is available this will be an empty collection.
+         * @returns {OrderRow[]}
+         */
+        this.getOrderRows = function getOrderRows () {
+            var orderRowCollection = [];
+            var i                  = 0;
+            var orderRow           = null;
+            for (i in orderData.order_rows) {
+                if (orderData.order_rows.hasOwnProperty(i)) {
+                    orderRow = orderData.order_rows[i];
+                    orderRowCollection.push(new OrderRow(orderRow));
+                }
+
+            }
+
+            return (orderData === null) ? [] : orderRowCollection;
+        };
+    }
+
+    function OrderRow (data) {
+        var orderRowData = data;
+        /**
+         * Returns Id of this object or null if not available. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/orderrows/:id
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (orderRowData === null) ? null : orderRowData.id;
+        };
+        /**
+         * Returns the poduct_id of this orderrow or null if not available. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/products/:id
+         *
+         * @returns {int|null}
+         */
+        this.getProductId = function getProductId () {
+            return (orderRowData === null) ? null : orderRowData.product_id;
+        };
+        /**
+         * Returns the quantity of the product in the orderrow or null if not available.
+         *
+         * @returns {int|null}
+         */
+        this.getCount = function getCount () {
+            return (orderRowData === null) ? null : orderRowData.count;
+        };
+        /**
+         * Returns the product name corresponding with this orderrow or null if not available.
+         * @returns {string|null}
+         */
+        this.getProductName = function getProductName () {
+            return (orderRowData === null) ? null : orderRowData.product_name;
+        };
+        /**
+         * Returns the product number corresponding with this orderrow or null if not available.
+         * @returns {string|null}
+         */
+        this.getProductNumber = function getProductNumber () {
+            return (orderRowData === null) ? null : orderRowData.product_number;
+        };
+        /**
+         * Returns the product base price corresponding with this orderrow or null if not available.
+         * @returns {float|null}
+         */
+        this.getPrice = function getPrice () {
+            return (orderRowData === null) ? null : orderRowData.price;
+        };
+        /**
+         * Returns the product discount corresponding with this orderrow or null if not available.
+         * @returns {float|null}
+         */
+        this.getDiscount = function getDiscount () {
+            return (orderRowData === null) ? null : orderRowData.discount;
+        };
+        /**
+         * Returns the tax percentage corresponding with this orderrow or null if not available.
+         * @returns {float|null}
+         */
+        this.getTax = function getTax () {
+            return (orderRowData === null) ? null : orderRowData.tax;
+        };
+    }
+
+    function Product (json) {
+        var product = JSON.parse(json);
+
+        /**
+         * Returns Id of this object. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/products/:id
+         *
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (product === null) ? null : product.id;
+        };
+
+        /**
+         * Returns Name of this object in the current language of the webshop.
+         *
+         * @returns {string|null}
+         */
+        this.getName = function getName () {
+            return (product === null) ? null : product.name;
+        };
+
+        /**
+         * Returns Product Number of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getProductNumber = function getProductNumber () {
+            return (product === null) ? null : product.productnumber;
+        };
+
+        /**
+         * Returns Product EAN of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getEAN = function getEAN () {
+            return (product === null) ? null : product.ean;
+        };
+
+        /**
+         * Returns the currently selected Attribute Combination. If the customer changes his choices, these values
+         * will change accordingly.
+         *
+         * @returns {AttributeCombination}
+         */
+        this.getSelectedAttributeCombination = function getSelectedAttributeCombination () {
+            return new AttributeCombination(ATTRIBUTE_COMBINATION_JSON);
+        };
+
+    }
+
+    function AttributeCombination (json) {
+        var attribute_combination = JSON.parse(json);
+
+        /**
+         * Returns the Id of this object. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/attributecombinations/:id
+         *
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (attribute_combination === null) ? null : attribute_combination.id;
+        };
+        /**
+         * Returns Note (or short description) of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getNote = function getNote () {
+            return (attribute_combination === null) ? null : attribute_combination.note;
+        };
+        /**
+         * Returns Product Number of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getProductNumber = function getProductNumber () {
+            return (attribute_combination === null) ? null : attribute_combination.product_number;
+        };
+        /**
+         * Returns Attribute Combination EAN of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getEAN = function getEAN () {
+            return (attribute_combination === null) ? null : attribute_combination.ean_number;
+        };
+        /**
+         * Returns Attribute Combination SKU of this object.
+         *
+         * @returns {string|null}
+         */
+        this.getSKU = function getSKU () {
+            return (attribute_combination === null) ? null : attribute_combination.sku_number;
+        };
+
+    }
+
+    function Category (json) {
+        var category = JSON.parse(json);
+        /**
+         * Returns Id of this object. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/categories/:id
+         *
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (category === null) ? null : category.id;
+        };
+
+        /**
+         * Returns Name of this object in the current language of the webshop.
+         *
+         * @returns {string|null}
+         */
+        this.getName = function getName () {
+            return (category === null) ? null : category.name;
+        };
+    }
+
+    function User (json) {
+        var user = JSON.parse(json);
+        /**
+         * Returns Id of this object. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/users/:id
+         *
+         * @returns {int|null}
+         */
+        this.getId = function getId () {
+            return (user === null) ? null : user.id;
+        };
+        /**
+         * Returns the Id of the group to whom this user belongs or null if not available. Id corresponds with the Resource Id in the API, ie:
+         * https://apiroot/:version/usergroups/:id
+         * @returns {null}
+         */
+        this.getGroupId = function getGroupId () {
+            return (user === null) ? null : user.group_id;
+        };
+    }
+
+
+
+
+    function Webshop (json) {
+        var webshop = JSON.parse(json);
+
+        var cookieBar       = (webshop.cookieBar === null) ? null : new CookieBar(webshop.cookieBar);
+        var creditPoints    = (webshop.creditPoints === null) ? null : new CreditPoints(webshop.creditPoints);
+        var discountCoupons = (webshop.discountCoupons === null) ? null : new DiscountCoupons(webshop.discountCoupons);
+        var currentTheme = (webshop.currentTheme === null) ? null : new CurrentTheme(webshop.currentTheme);
+        /**
+         * Returns a CookieBar object
+         * @returns {CookieBar}
+         */
+        this.getCookieBar = function getCookieBar () {
+            return cookieBar;
+        };
+        /**
+         * Returns a CreditPoints object.
+         * @returns {CreditPoints}
+         */
+        this.getCreditPoints = function getCreditPoints () {
+            return creditPoints;
+        };
+        /**
+         * Retuns a DiscountCoupons object.
+         * @returns {DiscountCoupons}
+         */
+        this.getDiscountCoupons = function getDiscountCoupons () {
+            return discountCoupons;
+        };
+        /**
+         * Retuns a CurrentTheme object.
+         * @returns {CurrentTheme}
+         */
+        this.getCurrentTheme = function getCurrentTheme () {
+            return currentTheme;
+        };
+        /**
+         * Returns the API root url of the webshop.
+         * @returns {string}
+         */
+        this.getApiRoot = function getApiRoot () {
+            return (webshop === null) ? null : webshop.api_root;
+        };
+        /**
+         * Indicates if prices include VAT.
+         * @returns {bool}
+         */
+        this.doPricesIncludeVat = function doPricesIncludeVat () {
+            return (webshop === null) ? null : webshop.prices_include_vat;
+        };
+
+        /**
+         * Indicates if shipping costs include VAT.
+         * @returns {bool}
+         */
+        this.doShippingCostsIncludeVat = function doShippingCostsIncludeVat () {
+            return (webshop === null) ? null : webshop.shippingcosts_include_vat;
+        };
+
+        /**
+         * Returns the current currency of the webshop in ISO 4217 Currency Codes.
+         * @returns {string}
+         */
+        this.getCurrency = function getCurrency () {
+            return (webshop === null) ? null : webshop.currency;
+        };
+        /**
+         * Returns the collection of available display languages of the webshop in ISO 639-1 Language Codes.
+         * @returns {array}
+         */
+        this.getLanguages = function getLanguages () {
+            return (webshop === null) ? null : webshop.languages;
+        };
+        /**
+         * Returns the current display language of the webshop in ISO 639-1 Language Codes.
+         * @returns {string}
+         */
+        this.getCurrentLanguage = function getCurrentLanguage () {
+            return (webshop === null) ? null : webshop.current_language;
+        };
+    }
+
+    function CookieBar (data) {
+        var cookieBarData = data;
+        /**
+         * Indicates if the webshop has a cookie bar.
+         * @returns {bool}
+         */
+        this.isEnabled = function isEnabled () {
+            return (cookieBarData === null) ? null : cookieBarData.is_enabled;
+        };
+        /**
+         * Indicates if the user accepted the placement of tracking cookies.
+         * @returns {bool}
+         */
+        this.isAccepted = function isAccepted () {
+            return (cookieBarData === null) ? null : cookieBarData.is_accepted;
+        };
+
+        this.getPreferences =function getPreferences () {
+            return (cookieBarData === null) ? [] : cookieBarData.preferences;
+        };
+
+        this.getCookies =function getCookies () {
+            return (cookieBarData === null) ? [] : cookieBarData.cookies;
+        };
+
+        this.isAllowed = function isAllowed(type) {
+            return this.getPreferences().includes(type);
+        }
+    }
+
+    function CreditPoints (data) {
+        var creditPointData = data;
+        /**
+         * Indicates if the checkout accepts creditpoints.
+         * @returns {bool}
+         */
+        this.isEnabled = function isEnabled () {
+            return (creditPointData === null) ? null : creditPointData.is_enabled;
+        };
+        /**
+         * Returns the value of 1 credit point in the current currency.
+         * @returns {float}
+         */
+        this.getValue = function getValue () {
+            return (creditPointData === null) ? null : creditPointData.value;
+        };
+        /**
+         * Returns the display name for the creditpoints. The merchant can choose how these should be named.
+         * @returns {string}
+         */
+        this.getName = function getName () {
+            return (creditPointData === null) ? null : creditPointData.name;
+        };
+    }
+
+    function DiscountCoupons (data) {
+        var discountCouponData = data;
+        /**
+         * Indicates if the checkout accepts discount coupons.
+         * @returns {bool}
+         */
+        this.isEnabled = function isEnabled () {
+            return (discountCouponData === null) ? null : discountCouponData.is_enabled;
+        };
+        /**
+         * Indicates if a discount coupon is used in the current order.
+         * @returns {bool}
+         */
+        this.isFilledIn = function isFilledIn () {
+            return (discountCouponData === null) ? null : discountCouponData.is_filled_in;
+        };
+
+    }
+
+    function CurrentTheme (data) {
+        var currentThemeData = data;
+        /**
+         * Returns the display name for the creditpoints. The merchant can choose how these should be named.
+         * @returns {string}
+         */
+        this.getName = function getName () {
+            return (currentThemeData === null) ? null : currentThemeData.name;
+        };
+
+    }
+
+};
+

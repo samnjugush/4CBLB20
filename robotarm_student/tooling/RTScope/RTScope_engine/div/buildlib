@@ -1,0 +1,8 @@
+gcc -fPIC -c libdiv.c
+gcc -shared -Wl,-soname,libdiv.so.1 -o libdiv.so.1.0 libdiv.o -lm
+mv libdiv.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libdiv.so.1.0 libdiv.so
+ln -sf libdiv.so.1.0 libdiv.so.1

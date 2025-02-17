@@ -1,0 +1,6 @@
+gcc -O2 -o test02 test02.c -L/usr/lib -lincomm
+
+
+
+
+

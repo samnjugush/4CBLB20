@@ -1,0 +1,9 @@
+gcc -fPIC -c libfir.c
+gcc -shared -Wl,-soname,libfir.so.1 -o libfir.so.1.0 libfir.o -lm -lremez
+
+mv libfir.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libfir.so.1.0 libfir.so
+ln -sf libfir.so.1.0 libfir.so.1

@@ -1,0 +1,53 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   5 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "previous_value_reference_start"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "Robot_Student_2020b_demo_calibration:2322:796-826"\
+    }\
+    ChartData {\
+      Name         "previous_value_reference_end"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "Robot_Student_2020b_demo_calibration:2322:827-855"\
+    }\
+    ChartData {\
+      Name         "path_array"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "Robot_Student_2020b_demo_calibration:2322:864-874"\
+    }\
+    ChartData {\
+      Name         "path_array_not_empty"\
+      Description  "EmlPersistentSentinel"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "Robot_Student_2020b_demo_calibration:2322:864-874"\
+    }\
+    ChartData {\
+      Name         "index"\
+      Description  "EmlPersistent"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  "Robot_Student_2020b_demo_calibration:2322:875-880"\
+    }\
+  }
+  %return ChartDataElements
+%endfunction

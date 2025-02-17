@@ -1,0 +1,579 @@
+/**
+ * productMedia
+ *
+ * @see
+ * @date   	   oktober 2015
+ * @author     Rick ter Heide
+ * @version    1.0 - initiele opzet
+ *
+ */
+(function($){
+    var aMethods = {
+        init : function(aOptions) {
+            log('aMethods -> init');
+
+            /**
+             * PrettyPhoto
+             */
+            ProductMedia_SetOptions(aOptions);
+
+            if(!aPrettyPhoto_Options.mobile) {
+                // Mobile versie heeft eigen foto tooling
+                ProductMedia_PrettyPhoto_PrepareMedia();
+
+                ProductMedia_Slider_Init();
+
+                ProductMedia_PrettyPhoto_Init();
+
+                ProductMedia_BindEvents();
+            }
+
+            /**
+             * Cloudzoom
+             */
+            ProductMedia_Cloudzoom_Init();
+
+            /**
+             * Swipe
+             */
+            ProductMedia_Swipe_Init();
+        },
+        loadMedia : function(aOptions) {
+            if(aOptions == undefined) {
+                return false;
+            }
+
+            aPrettyPhoto_Options.data.images = [];
+            aPrettyPhoto_Options.data.videos = [];
+
+            ProductMedia_SetOptions(aOptions);
+
+            if(aPrettyPhoto_Options.mobile == false) {
+                ProductMedia_PrettyPhoto_PrepareMedia();
+
+                ProductMedia_MainImage_UpdateByIndex();
+
+                ProductMedia_Slider_Init();
+
+                /**
+                 * Cloudzoom
+                 */
+                ProductMedia_Cloudzoom_Init();
+            } else {
+                ProductMedia_PhotoSwipe_Init();
+            }
+        }
+    };
+
+    $.productMedia = function(sElement, sMethod, aArgs) {
+        var base = this;
+
+        base.options = {};
+
+        base.prettyphoto = null;
+
+        $eElement = $(sElement);
+        $eElement.data("productMedia", base);
+
+        if ( aMethods[sMethod] ) {
+            return aMethods[ sMethod ].apply( this, Array.prototype.slice.call( arguments, 2 ));
+        } else if ( typeof sMethod === 'object' || ! sMethod ) {
+            return aMethods.init.apply( this, arguments );
+        } else {
+            $.error( 'Method ' +  sMethod + ' does not exist on jQuery.productMedia' );
+        }
+    };
+
+    $.fn.productMedia = function(sMethod, aArgs){
+        return this.each(function(){
+            (new $.productMedia(this, sMethod, aArgs));
+        });
+    };
+
+    var $eElement = null;
+
+    var iThumbPosition = 0;
+    var iThumbStep = null;
+
+    var iRestyleThumbTimer = null;
+
+    var aPrettyPhoto_Options = {};
+    var aPrettyPhoto_DefaultOptions = {
+        mobile: false,
+        debug: true,
+        mainImage: {
+            url: '',
+            size: 'Large'
+        },
+        thumbnails: {
+            size: 'Thumbnail',
+            width: 0
+        },
+        prettyPhoto: {
+            enabled: true,
+            theme: '',
+            defaultWidth: 600,
+            images: {
+                size: 'Large'
+            }
+        },
+        cloudzoom: {
+            enabled: true
+        },
+        swipe: {
+            enabled: false
+        },
+        photoswipe: {
+            enabled: false
+        },
+        navigation: {
+            buttons: {
+                width: 20
+            }
+        },
+        productLayout: '',
+        data: {
+            images: [],
+            videos: [],
+            media: [],
+            titles: [],
+            description: []
+        }
+    };
+
+    function ProductMedia_BindEvents() {
+        log('ProductMedia_BindEvents');
+        /**
+         * Add button event
+         */
+        if(aPrettyPhoto_Options.prettyPhoto.enabled) {
+            var $eEventElement = $eElement;
+            if(aPrettyPhoto_Options.productLayout != 4) {
+                log(' - eventelement: ');
+                log(document);
+                $eEventElement = $(document);
+            }
+			var iIndex = undefined;
+			$eEventElement.on('click', '[data-productmedia-pp-action="OpenPrettyPhoto"]', function () {
+				log(' - click on [data-productmedia-pp-action="OpenPrettyPhoto"]');
+
+				if ($(this).attr('data-productmedia-pp-index') != undefined) {
+					iIndex = $(this).attr('data-productmedia-pp-index');
+				}
+				ProductMedia_PrettyPhoto_Open(iIndex);
+			});
+
+        }
+
+        $eEventElement.on('click', '[data-productmedia-pp-action="UpdateMainImage"]', function() {
+            log(' - click on [data-productmedia-pp-action="UpdateMainImage"]');
+            var iPPIndex = $(this).attr('data-productmedia-pp-index');
+            if(iPPIndex != undefined && iPPIndex != '') {
+                ProductMedia_MainImage_UpdateByIndex(iPPIndex);
+            }
+        });
+
+        $eEventElement.on('click', '[data-productmedia-navigation="Previous"]', function() {
+            log(' - click on [data-productmedia-navigation="Previous"]');
+            ProductMedia_Slider_PreviousImage();
+        });
+
+        $eEventElement.on('click', '[data-productmedia-navigation="Next"]', function() {
+            log(' - click on [data-productmedia-navigation="Next"]');
+            ProductMedia_Slider_NextImage();
+        });
+
+        $(window).on('resize', function () {
+            clearTimeout(iRestyleThumbTimer);
+            iRestyleThumbTimer = setTimeout(ProductMedia_Slider_Init(), 500);
+        });
+    }
+
+    function ProductMedia_SetOptions(aOptions) {
+
+        if (aOptions && typeof(aOptions) == 'object') {
+            $.extend(true, aPrettyPhoto_Options, aPrettyPhoto_DefaultOptions, aOptions);
+        } else {
+            $.extend(true, aPrettyPhoto_Options, aPrettyPhoto_DefaultOptions);
+        }
+
+        log(aPrettyPhoto_Options);
+
+        if(aOptions.hasOwnProperty('data')) {
+            if(aOptions.data.images != undefined) {
+                if(aOptions.data.images.length == 0) {
+                    aPrettyPhoto_Options.data.images = [];
+                }
+            } else {
+                aPrettyPhoto_Options.data.images = [];
+            }
+
+            if(aOptions.data.videos != undefined) {
+                if(aOptions.data.videos.length == 0) {
+                    aPrettyPhoto_Options.data.videos = [];
+                }
+            } else {
+                aPrettyPhoto_Options.data.videos = [];
+            }
+        } else {
+            aPrettyPhoto_Options.data.images = [];
+            aPrettyPhoto_Options.data.videos = [];
+        }
+
+        // Onderstaand naar array ivm behouden indexes
+        aPrettyPhoto_Options.data.images = $.map(aPrettyPhoto_Options.data.images, function(el) { return el });
+
+        log(aPrettyPhoto_Options);
+    }
+
+    function ProductMedia_PrettyPhoto_Init() {
+        log('ProductMedia_PrettyPhoto_Init');
+        if(aPrettyPhoto_Options.prettyPhoto.enabled) {
+            log(' - enabled');
+            if($.fn.prettyPhoto != undefined) {
+                $.fn.prettyPhoto({
+                    animation_speed: 'fast', 			            /* fast/slow/normal */
+                    slideshow: false, 					            /* false OR interval time in ms */
+                    opacity: 0.80, 						            /* Value between 0 and 1 */
+                    show_title: false, 					            /* true/false */
+                    allow_resize: false, 				            /* Resize the photos bigger than viewport. true/false */
+                    counter_separator_label: '/', 		            /* The separator for the gallery counter 1 "of" 2 */
+                    theme: aPrettyPhoto_Options.prettyPhoto.theme, 		/* light_rounded / dark_rounded / light_square / dark_square / facebook */
+                    hideflash: false, 					            /* Hides all the flash object on a page, set to TRUE if flash appears over prettyPhoto */
+                    wmode: 'opaque', 					            /* Set the flash wmode attribute */
+                    modal: false,						            /* If set to true, only the close button will close the window */
+                    overlay_gallery: true, 				            /* If set to true, a gallery will overlay the fullscreen image on mouse over */
+                    keyboard_shortcuts: false,			            /* Set to false if you open forms inside prettyPhoto */
+                    default_width: aPrettyPhoto_Options.prettyPhoto.defaultWidth,
+                    social_tools: '',
+                    callback: function(){
+                        if(aPrettyPhoto_Options.productLayout != 4 || aPrettyPhoto_Options.productLayout != 5) {
+                            $('#content iframe').each(function(){
+                                $(this).show();
+                            });
+                        }
+                    }
+                });
+
+                $.fn.productMedia.prettyphoto = $.prettyPhoto;
+            }
+        }
+    }
+
+    function ProductMedia_PrettyPhoto_PrepareMedia() {
+        log('ProductMedia_PrettyPhoto_PrepareMedia');
+        var aMedia = [];
+
+        if(!aPrettyPhoto_Options.hasOwnProperty('data')) {
+            aPrettyPhoto_Options.data.media = [];
+            return aMedia;
+        }
+
+        if(aPrettyPhoto_Options.data.images != undefined) {
+            log(' - has images');
+            $.each(aPrettyPhoto_Options.data.images, function(iKey, sImage) {
+                log(' - - added image: ' + aPrettyPhoto_Options.mainImage.url + aPrettyPhoto_Options.prettyPhoto.images.size + '/' + sImage)
+                aMedia.push(aPrettyPhoto_Options.mainImage.url + aPrettyPhoto_Options.prettyPhoto.images.size + '/' + sImage);
+            });
+        }
+
+        // Video's alleen in tabview in prettyphoto laden
+        if(aPrettyPhoto_Options.productLayout == 4 && aPrettyPhoto_Options.data.videos != undefined) {
+            log(' - has videos');
+            $.each(aPrettyPhoto_Options.data.videos, function(iKey, sVideo) {
+                log(' - - added video: ' + sVideo)
+                aMedia.push(sVideo);
+            });
+        }
+
+        aPrettyPhoto_Options.data.media = aMedia;
+    }
+
+    function ProductMedia_PrettyPhoto_Open(iIndex) {
+        log('ProductMedia_PrettyPhoto_Open');
+
+        if(aPrettyPhoto_Options.productLayout != 4) {
+            $('#content iframe').each(function(){
+                $(this).hide();
+            });
+        }
+
+        log('media.length: ' + aPrettyPhoto_Options.data.media.length);
+        if(aPrettyPhoto_Options.data.media.length > 0) {
+            $.fn.productMedia.prettyphoto.open(aPrettyPhoto_Options.data.media, aPrettyPhoto_Options.data.titles);
+
+            ProductMedia_PrettyPhoto_ChangePageByIndex(iIndex);
+        }
+    }
+
+    function ProductMedia_PrettyPhoto_ChangePageByIndex(iIndex) {
+        log('ProductMedia_PrettyPhoto_ChangePageByIndex');
+        if(iIndex != undefined && iIndex != '') {
+            $.fn.productMedia.prettyphoto.changePage(parseInt(iIndex));
+        }
+    }
+
+    function ProductMedia_Cloudzoom_Init() {
+        log('ProductMedia_Cloudzoom_Init');
+
+        log(aPrettyPhoto_Options.cloudzoom.enabled);
+        if(typeof CloudZoom != 'undefined' && (aPrettyPhoto_Options.cloudzoom.enabled || aPrettyPhoto_Options.productLayout == 4)){
+            log(' - enabled');
+            CloudZoom.quickStart();
+        }
+    }
+
+    function ProductMedia_CloudZoom_LoadImageByIndex(iPPIndex) {
+        log('ProductMedia_CloudZoom_LoadImageByIndex');
+        if(iPPIndex == undefined || iPPIndex == '') {
+            iPPIndex = 0;
+        }
+
+        var sImage = ProductMedia_GetImageByIndex(iPPIndex, 'Large');
+
+        if(sImage != '') {
+            CloudZoom = $('[data-productmedia-mainphoto]').data('CloudZoom');
+            CloudZoom.loadImage($('[data-productmedia-mainphoto]').attr('src'), sImage);
+        }
+    }
+
+    function ProductMedia_Slider_Init() {
+        log('ProductMedia_Slider_Init');
+        if(aPrettyPhoto_Options.productLayout != 4) {
+            return false;
+        }
+
+        iThumbPosition = 0;
+        var iMediaCount = $('[data-ppthumbnail]').length;
+
+        $('[data-ppthumbnails]').css('margin-left', 0);
+
+        var eOuterContainer = $('[data-ppthumbnailcontainer]');
+        var eInnerContainer = eOuterContainer.find('.slider');
+
+        eOuterContainer.find('.button').width(aPrettyPhoto_Options.navigation.buttons.width);
+
+        var iSliderWidth = eOuterContainer.width() - (aPrettyPhoto_Options.navigation.buttons.width * 2) - 15;
+        var iThumbsCount = 4;
+        var iThumbsSpacing = 3;
+        if (iMediaCount < 4) {
+            iSliderWidth = eOuterContainer.width() - 10;
+            iThumbsCount = iMediaCount;
+            iThumbsSpacing = iThumbsCount - 1;
+
+            $('[data-productmedia-navigation]').addClass('hidden');
+        } else {
+            $('[data-productmedia-navigation="previous"]').removeClass('inactive').addClass('inactive');
+            $('[data-productmedia-navigation="next"]').removeClass('inactive');
+            $('[data-productmedia-navigation]').removeClass('hidden');
+        }
+
+        var iThumbWidth = Math.floor((iSliderWidth - (iThumbsSpacing * 3)) / 4);
+
+        iThumbStep = iThumbWidth + iThumbsSpacing;
+        $('[data-ppthumbnail]').width(iThumbWidth-2).height(iThumbWidth-2);
+
+        var iInnerContainerWidth = (iThumbWidth * iThumbsCount) + (iThumbsCount * 3);
+
+        // Inner container size
+        eInnerContainer.width(iInnerContainerWidth).height(iThumbWidth);
+
+        log(' - thumbnail width: ' + iThumbWidth);
+        log(' - inner container width: ' + iInnerContainerWidth);
+        log(' - outer container width: ' + eOuterContainer.width());
+
+        log(' - mediaCount: ' + iMediaCount)
+        if(iMediaCount > 4) {
+            eInnerContainer.css('margin-left', 0);
+            // Nav buttons height
+            eOuterContainer.find('.button').height(iThumbWidth);
+        }
+
+        if(iMediaCount < 5) {
+            // Inner container margin-left
+            eOuterContainer.find('.button').height(0);
+            eInnerContainer.css('margin-left', ((eOuterContainer.width() - iInnerContainerWidth) / 2 - 20));
+        }
+    }
+
+    function ProductMedia_Slider_UpdateState() {
+        log('ProductMedia_Slider_UpdateState');
+        $('[data-ppthumbnails]').animate({ marginLeft: (0 - (iThumbPosition * iThumbStep)) }, 200);
+
+        if (iThumbPosition > 0) {
+            $('[data-productmedia-navigation="Previous"]').removeClass('inactive');
+        } else {
+            $('[data-productmedia-navigation="Previous"]').addClass('inactive');
+        }
+
+        if (iThumbPosition < ($('[data-ppthumbnail]').length - 4)) {
+            $('[data-productmedia-navigation="Next"]').removeClass('inactive');
+        } else {
+            $('[data-productmedia-navigation="Next"]').addClass('inactive');
+        }
+    }
+
+    function ProductMedia_Slider_PreviousImage() {
+        log('ProductMedia_Slider_PreviousImage');
+        if(iThumbPosition > 0) {
+            iThumbPosition = iThumbPosition - 1;
+            ProductMedia_Slider_UpdateState();
+        }
+    }
+
+    function ProductMedia_Slider_NextImage() {
+        log('ProductMedia_Slider_NextImage');
+        if (iThumbPosition < ($('[data-ppthumbnail]').length - 4)) {
+            iThumbPosition = iThumbPosition + 1;
+            ProductMedia_Slider_UpdateState();
+        }
+    }
+
+    function ProductMedia_Swipe_Init() {
+        log('ProductMedia_Swipe_Init');
+        if(aPrettyPhoto_Options.swipe.enabled) {
+            log(' - enabled');
+            $(".swipe").swipe({
+                swipeLeft: function (event, direction, distance, duration, fingerCount) {
+                    ProductMedia_Swipe_ToDirection('left');
+                },
+                swipeRight: function (event, direction, distance, duration, fingerCount) {
+                    ProductMedia_Swipe_ToDirection('right');
+                },
+                threshold: 0
+            });
+        }
+    }
+
+    function ProductMedia_Swipe_ToDirection(sDirection) {
+        log('ProductMedia_Swipe_ToDirection');
+        var iPPIndex = parseInt($('[data-productmedia-mainphoto]').attr('data-productmedia-pp-index'));
+
+        var bUpdateMainImage = false;
+        if(sDirection == 'left'){
+            if(iPPIndex < (aPrettyPhoto_Options.data.images.length-1)){
+                iPPIndex = iPPIndex + 1;
+                bUpdateMainImage = true;
+            }
+            ProductMedia_Slider_NextImage();
+        } else if(sDirection == 'right'){
+            if(iPPIndex != 0){
+                iPPIndex = iPPIndex - 1;
+                bUpdateMainImage = true;
+            }
+            ProductMedia_Slider_PreviousImage();
+        }
+        log(' - ' + sDirection);
+
+        if(bUpdateMainImage) {
+            ProductMedia_MainImage_UpdateByIndex(iPPIndex);
+        }
+    }
+
+    function ProductMedia_PhotoSwipe_Init() {
+        log('ProductMedia_PhotoSwipe_Init');
+        if(aPrettyPhoto_Options.photoswipe.enabled) {
+            log(' - enabled');
+            if(typeof window.Code !== 'undefined') {
+                if(typeof window.Code.PhotoSwipe !== 'undefined') {
+                    var options = { };
+                    window.Code.PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+                }
+            }
+        }
+    }
+
+    function ProductMedia_MainImage_UpdateByIndex(iPPIndex) {
+        log('ProductMedia_MainImage_UpdateByIndex');
+        if(iPPIndex == undefined || iPPIndex == '') {
+            iPPIndex = 0;
+        }
+
+        var sImage = ProductMedia_GetImageByIndex(iPPIndex);
+        if(sImage != '') {
+
+            $('[data-productmedia-mainphoto]').attr('src', sImage);
+
+        }
+
+        $('[data-productmedia-mainphoto]').attr('title', ProductMedia_GetTitleByIndex(iPPIndex));
+        $('[data-productmedia-mainphoto]').attr('data-productmedia-pp-index', iPPIndex);
+
+        if(aPrettyPhoto_Options.cloudzoom.enabled) {
+            ProductMedia_CloudZoom_LoadImageByIndex(iPPIndex);
+        }
+    }
+
+    function ProductMedia_GetImageByIndex(iPPIndex, sSize) {
+        log('ProductMedia_GetImageByIndex');
+        if(iPPIndex == undefined || iPPIndex == '') {
+			// Geen index? Zoeken naar een mainphoto en anders terugvallen op index 0
+
+			// Zoeken naar een fallback in de attributen
+			iPPIndex = $('div').find("[data-productmedia-mainphoto=Y]").data('productmediaPpAttrindex');
+
+			if(iPPIndex == undefined || iPPIndex == '') {
+				iPPIndex = 0;
+			}
+        }
+
+        var sImage = '';
+        if(aPrettyPhoto_Options.data.images[iPPIndex] != undefined) {
+            sImage = aPrettyPhoto_Options.data.images[iPPIndex];
+        }
+
+        if(sImage == undefined || sImage == '') {
+            return '/website/Images/NotFound/Medium.jpg';
+        }
+
+        if(sSize == undefined || sSize == '') {
+            sSize = aPrettyPhoto_Options.mainImage.size;
+        }
+
+        return aPrettyPhoto_Options.mainImage.url + sSize + '/' + sImage;
+    }
+
+    function ProductMedia_GetTitleByIndex(iPPIndex) {
+        log('ProductMedia_GetTitleByIndex');
+        if(iPPIndex == undefined || iPPIndex == '') {
+			// Zoeken naar een fallback in de attributen
+			iPPIndex = $('div').find("[data-productmedia-mainphoto=Y]").data('productmediaPpAttrindex');
+
+			if(iPPIndex == undefined || iPPIndex == '') {
+				iPPIndex = 0;
+			}
+        }
+
+        var sImage = '';
+        if(aPrettyPhoto_Options.data.titles[iPPIndex] != undefined) {
+            sImage = aPrettyPhoto_Options.data.titles[iPPIndex];
+        }
+
+        return sImage;
+    }
+
+    function ProductMedia_GetDescriptionByIndex(iPPIndex) {
+        log('ProductMedia_GetDescriptionByIndex');
+        if(iPPIndex == undefined || iPPIndex == '') {
+			// Zoeken naar een fallback in de attributen
+			iPPIndex = $('div').find("[data-productmedia-mainphoto=Y]").data('productmediaPpAttrindex');
+
+			if(iPPIndex == undefined || iPPIndex == '') {
+				iPPIndex = 0;
+			}
+        }
+
+        var sImage = '';
+        if(aPrettyPhoto_Options.data.description[iPPIndex] != undefined) {
+            sImage = aPrettyPhoto_Options.data.description[iPPIndex];
+        }
+
+        return sImage;
+    }
+
+    function log(mData) {
+        if(aPrettyPhoto_Options.debug == true) {
+            //console.log(mData);
+        }
+    }
+})(jQuery);

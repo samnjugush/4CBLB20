@@ -1,0 +1,16 @@
+#!/bin/sh
+cat /proc/interrupts >ttt1
+grep 'ehci' ttt1 >the_ehci_irq
+readirq
+THE_IRQ=`more the_ehci_irq_v2`
+echo found ehci irq = $THE_IRQ
+rm ttt1
+rm the_ehci_irq
+rm the_ehci_irq_v2
+chrt -f -p 95 `pidof "IRQ-$THE_IRQ"`
+chrt -p `pidof "IRQ-$THE_IRQ"`
+#chrt -o -p 0 `pidof "posix_cpu_timer"`
+#chrt -p `pidof "posix_cpu_timer"`
+
+
+

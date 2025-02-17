@@ -1,0 +1,8 @@
+gcc -fPIC -c libremez.c
+gcc -shared -Wl,-soname,libremez.so.1 -o libremez.so.1.0 libremez.o -lc -lm
+mv libremez.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libremez.so.1.0 libremez.so
+ln -sf libremez.so.1.0 libremez.so.1

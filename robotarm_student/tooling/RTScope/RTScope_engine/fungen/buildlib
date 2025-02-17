@@ -1,0 +1,9 @@
+gcc -fPIC -o libfungen.o -c libfungen.c -I../tdext -I../remez -I../fir
+gcc -shared -Wl,-soname,libfungen.so.1 -o libfungen.so.1.0 libfungen.o -lc -lm -lfir -ltimer_posix
+
+mv libfungen.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libfungen.so.1.0 libfungen.so
+ln -sf libfungen.so.1.0 libfungen.so.1

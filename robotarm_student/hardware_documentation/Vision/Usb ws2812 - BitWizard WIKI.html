@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://bitwizard.nl/wiki/Usb_ws2812 -->
+<html lang="en" dir="ltr" class="client-js overthrow-enabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Usb ws2812 - BitWizard WIKI</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Usb_ws2812","wgTitle":"Usb ws2812","wgCurRevisionId":4652,"wgRevisionId":4652,"wgArticleId":1837,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Usb_ws2812","wgRelevantArticleId":1837,"wgRequestId":"92d10c64a9b18e156bc25c09","wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgMetrolookEnabledModules":{"collapsiblenav":true}});mw.loader.implement("user.options",function($,jQuery,require,module){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function ( $, jQuery, require, module ) {
+mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});/*@nomin*/;
+
+});mw.loader.load(["mediawiki.page.startup","skins.metrolook.js"]);});</script>
+<link rel="stylesheet" href="./Usb ws2812 - BitWizard WIKI_files/load.php">
+<style>
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+@media screen {
+	.tochidden,.toctoggle{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.toctoggle{font-size:94%}}
+@media print {
+	#toc.tochidden,.toctoggle{display:none}}
+#mw-panel.collapsible-nav .portal{   }#mw-panel.collapsible-nav .portal h5{background-position:left center;background-repeat:no-repeat;background-image:url(/wiki/skins/Metrolook/images/open.png?1e43d);background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21--%20Created%20with%20Inkscape%20%28http%3A%2F%2Fwww.inkscape.org%2F%29%20--%3E%0A%0A%3Csvg%0A%20%20%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%0A%20%20%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%0A%20%20%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%0A%20%20%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3Asodipodi%3D%22http%3A%2F%2Fsodipodi.sourceforge.net%2FDTD%2Fsodipodi-0.dtd%22%0A%20%20%20xmlns%3Ainkscape%3D%22http%3A%2F%2Fwww.inkscape.org%2Fnamespaces%2Finkscape%22%0A%20%20%20id%3D%22svg3826%22%0A%20%20%20version%3D%221.1%22%0A%20%20%20inkscape%3Aversion%3D%220.91%20r13725%22%0A%20%20%20width%3D%2216%22%0A%20%20%20height%3D%2216%22%0A%20%20%20sodipodi%3Adocname%3D%22open.svg%22%3E%0A%20%20%3Cmetadata%0A%20%20%20%20%20id%3D%22metadata3832%22%3E%0A%20%20%20%20%3Crdf%3ARDF%3E%0A%20%20%20%20%20%20%3Ccc%3AWork%0A%20%20%20%20%20%20%20%20%20rdf%3Aabout%3D%22%22%3E%0A%20%20%20%20%20%20%20%20%3Cdc%3Aformat%3Eimage%2Fsvg%2Bxml%3C%2Fdc%3Aformat%3E%0A%20%20%20%20%20%20%20%20%3Cdc%3Atype%0A%20%20%20%20%20%20%20%20%20%20%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%20%2F%3E%0A%20%20%20%20%20%20%3C%2Fcc%3AWork%3E%0A%20%20%20%20%3C%2Frdf%3ARDF%3E%0A%20%20%3C%2Fmetadata%3E%0A%20%20%3Cdefs%0A%20%20%20%20%20id%3D%22defs3830%22%20%2F%3E%0A%20%20%3Csodipodi%3Anamedview%0A%20%20%20%20%20pagecolor%3D%22%23ffffff%22%0A%20%20%20%20%20bordercolor%3D%22%23666666%22%0A%20%20%20%20%20borderopacity%3D%221%22%0A%20%20%20%20%20objecttolerance%3D%2210%22%0A%20%20%20%20%20gridtolerance%3D%2210%22%0A%20%20%20%20%20guidetolerance%3D%2210%22%0A%20%20%20%20%20inkscape%3Apageopacity%3D%220%22%0A%20%20%20%20%20inkscape%3Apageshadow%3D%222%22%0A%20%20%20%20%20inkscape%3Awindow-width%3D%221366%22%0A%20%20%20%20%20inkscape%3Awindow-height%3D%22705%22%0A%20%20%20%20%20id%3D%22namedview3828%22%0A%20%20%20%20%20showgrid%3D%22false%22%0A%20%20%20%20%20inkscape%3Azoom%3D%2214.75%22%0A%20%20%20%20%20inkscape%3Acx%3D%22-3.8983051%22%0A%20%20%20%20%20inkscape%3Acy%3D%221.4177547%22%0A%20%20%20%20%20inkscape%3Awindow-x%3D%22-8%22%0A%20%20%20%20%20inkscape%3Awindow-y%3D%22-8%22%0A%20%20%20%20%20inkscape%3Awindow-maximized%3D%221%22%0A%20%20%20%20%20inkscape%3Acurrent-layer%3D%22svg3826%22%20%2F%3E%0A%20%20%3Cg%0A%20%20%20%20%20id%3D%22g6344%22%0A%20%20%20%20%20transform%3D%22matrix%281.0678303%2C0%2C0%2C1%2C0.52781819%2C-0.350171%29%22%3E%0A%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20style%3D%22fill%3A%236e6e6e%3Bfill-opacity%3A1%22%0A%20%20%20%20%20%20%20d%3D%22M%204.3978226%2C11.436911%201.875%2C8.8036522%20l%200%2C-1.2959742%200%2C-1.295974%202.6141067%2C2.5044731%202.6141066%2C2.5044739%202.542143%2C-2.542144%202.5421437%2C-2.5421434%200%2C1.4439202%200%2C1.4439202%20-2.6334272%2C2.522984%20-2.6334275%2C2.522983%20-2.5228227%2C-2.63326%20z%22%0A%20%20%20%20%20%20%20id%3D%22path6350%22%0A%20%20%20%20%20%20%20inkscape%3Aconnector-curvature%3D%220%22%20%2F%3E%0A%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20style%3D%22fill%3A%236e6e6e%22%0A%20%20%20%20%20%20%20d%3D%22M%203.9134194%2C10.955202%201.875%2C8.785404%20l%200%2C-1.28685%200%2C-1.28685%202.6141067%2C2.5044731%202.6141066%2C2.5044739%202.542143%2C-2.542144%202.5421437%2C-2.5421434%200%2C1.4558988%200%2C1.4558988%20-2.169798%2C2.0384198%20C%207.278991%2C13.659466%206.4369175%2C13.641342%203.9134194%2C10.955202%20Z%22%0A%20%20%20%20%20%20%20id%3D%22path6348%22%0A%20%20%20%20%20%20%20inkscape%3Aconnector-curvature%3D%220%22%20%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A);background-image:linear-gradient(transparent,transparent),url(/wiki/skins/Metrolook/images/open.svg?36f48)!ie;background-image:-o-linear-gradient(transparent,transparent),url(/wiki/skins/Metrolook/images/open.png?1e43d);padding:4px 0 3px 1.1em;margin-left:-0.5em}#mw-panel.collapsible-nav .portal h5:hover{cursor:pointer;text-decoration:none}#mw-panel.collapsible-nav .portal h5 a{color:#4d4d4d;text-decoration:none}#mw-panel.collapsible-nav .portal .body{margin:0 0 0 1.25em;background-image:none !important;padding-top:0;display:none}#mw-panel.collapsible-nav .portal .body ul li{padding:0.25em 0}#mw-panel.collapsible-nav .portal.first{background-image:none;margin-top:0}#mw-panel.collapsible-nav .portal.first h5{display:none}#mw-panel.collapsible-nav .portal.persistent .body{display:block;margin-left:0.5em}#mw-panel.collapsible-nav .portal.persistent h5{background-image:none !important;padding-left:0.7em;cursor:default}#mw-panel.collapsible-nav .portal.collapsed h5{color:#0645ad;background-position:left center;background-repeat:no-repeat;background-image:url(/wiki/skins/Metrolook/images/closed-ltr.png?73040);background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21--%20Created%20with%20Inkscape%20%28http%3A%2F%2Fwww.inkscape.org%2F%29%20--%3E%0A%0A%3Csvg%0A%20%20%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%0A%20%20%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%0A%20%20%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%0A%20%20%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3Asodipodi%3D%22http%3A%2F%2Fsodipodi.sourceforge.net%2FDTD%2Fsodipodi-0.dtd%22%0A%20%20%20xmlns%3Ainkscape%3D%22http%3A%2F%2Fwww.inkscape.org%2Fnamespaces%2Finkscape%22%0A%20%20%20id%3D%22svg3902%22%0A%20%20%20version%3D%221.1%22%0A%20%20%20inkscape%3Aversion%3D%220.91%20r13725%22%0A%20%20%20width%3D%2216%22%0A%20%20%20height%3D%2216%22%0A%20%20%20sodipodi%3Adocname%3D%22closed-ltr.svg%22%3E%0A%20%20%3Cmetadata%0A%20%20%20%20%20id%3D%22metadata3908%22%3E%0A%20%20%20%20%3Crdf%3ARDF%3E%0A%20%20%20%20%20%20%3Ccc%3AWork%0A%20%20%20%20%20%20%20%20%20rdf%3Aabout%3D%22%22%3E%0A%20%20%20%20%20%20%20%20%3Cdc%3Aformat%3Eimage%2Fsvg%2Bxml%3C%2Fdc%3Aformat%3E%0A%20%20%20%20%20%20%20%20%3Cdc%3Atype%0A%20%20%20%20%20%20%20%20%20%20%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%20%2F%3E%0A%20%20%20%20%20%20%20%20%3Cdc%3Atitle%3E%3C%2Fdc%3Atitle%3E%0A%20%20%20%20%20%20%3C%2Fcc%3AWork%3E%0A%20%20%20%20%3C%2Frdf%3ARDF%3E%0A%20%20%3C%2Fmetadata%3E%0A%20%20%3Cdefs%0A%20%20%20%20%20id%3D%22defs3906%22%20%2F%3E%0A%20%20%3Csodipodi%3Anamedview%0A%20%20%20%20%20pagecolor%3D%22%23ffffff%22%0A%20%20%20%20%20bordercolor%3D%22%23666666%22%0A%20%20%20%20%20borderopacity%3D%221%22%0A%20%20%20%20%20objecttolerance%3D%2210%22%0A%20%20%20%20%20gridtolerance%3D%2210%22%0A%20%20%20%20%20guidetolerance%3D%2210%22%0A%20%20%20%20%20inkscape%3Apageopacity%3D%220%22%0A%20%20%20%20%20inkscape%3Apageshadow%3D%222%22%0A%20%20%20%20%20inkscape%3Awindow-width%3D%221366%22%0A%20%20%20%20%20inkscape%3Awindow-height%3D%22705%22%0A%20%20%20%20%20id%3D%22namedview3904%22%0A%20%20%20%20%20showgrid%3D%22false%22%0A%20%20%20%20%20inkscape%3Azoom%3D%2214.75%22%0A%20%20%20%20%20inkscape%3Acx%3D%22-3.8983051%22%0A%20%20%20%20%20inkscape%3Acy%3D%2213.169251%22%0A%20%20%20%20%20inkscape%3Awindow-x%3D%22-8%22%0A%20%20%20%20%20inkscape%3Awindow-y%3D%22-8%22%0A%20%20%20%20%20inkscape%3Awindow-maximized%3D%221%22%0A%20%20%20%20%20inkscape%3Acurrent-layer%3D%22svg3902%22%20%2F%3E%0A%20%20%3Cg%0A%20%20%20%20%20id%3D%22g3940%22%3E%0A%20%20%20%20%3Cg%0A%20%20%20%20%20%20%20id%3D%22g6344%22%0A%20%20%20%20%20%20%20transform%3D%22matrix%280%2C-1.0678303%2C1%2C0%2C-1.0513636%2C17.902182%29%22%3E%0A%20%20%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20%20%20style%3D%22fill%3A%236e6e6e%3Bfill-opacity%3A1%22%0A%20%20%20%20%20%20%20%20%20d%3D%22M%204.3978226%2C11.436911%201.875%2C8.8036522%20l%200%2C-1.2959742%200%2C-1.295974%202.6141067%2C2.5044731%202.6141066%2C2.5044739%202.542143%2C-2.542144%202.5421437%2C-2.5421434%200%2C1.4439202%200%2C1.4439202%20-2.6334272%2C2.522984%20-2.6334275%2C2.522983%20-2.5228227%2C-2.63326%20z%22%0A%20%20%20%20%20%20%20%20%20id%3D%22path6350%22%0A%20%20%20%20%20%20%20%20%20inkscape%3Aconnector-curvature%3D%220%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%0A%20%20%20%20%20%20%20%20%20style%3D%22fill%3A%236e6e6e%22%0A%20%20%20%20%20%20%20%20%20d%3D%22M%203.9134194%2C10.955202%201.875%2C8.785404%20l%200%2C-1.28685%200%2C-1.28685%202.6141067%2C2.5044731%202.6141066%2C2.5044739%202.542143%2C-2.542144%202.5421437%2C-2.5421434%200%2C1.4558988%200%2C1.4558988%20-2.169798%2C2.0384198%20C%207.278991%2C13.659466%206.4369175%2C13.641342%203.9134194%2C10.955202%20Z%22%0A%20%20%20%20%20%20%20%20%20id%3D%22path6348%22%0A%20%20%20%20%20%20%20%20%20inkscape%3Aconnector-curvature%3D%220%22%20%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A);background-image:linear-gradient(transparent,transparent),url(/wiki/skins/Metrolook/images/closed-ltr.svg?27c72)!ie;background-image:-o-linear-gradient(transparent,transparent),url(/wiki/skins/Metrolook/images/closed-ltr.png?73040)}#mw-panel.collapsible-nav .portal.collapsed h5:hover{text-decoration:underline}#mw-panel.collapsible-nav .portal.collapsed h5 a{color:#0645ad}
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB9ElEQVR4AZWRA3AYURQArxrVHtW2bdu2bdu2zdi2bdu2bWxs7zeehZaw4f70kbs+zI3e/nWK+RWx3aOFlrL56Sy5SxrruG69hlv6OyK+mz+8KDSXdXembj0ispT7tjs4ZTIbpYBvxGSGKzZTeFrb7W/meN002swFs0U8ttpHTkF2BvCqWQrW35929bTsKm5Zb+SEwWwcY8wAngB9m7Z+d+rIPZ/npdy12M5p47n8dXsCYAf0qPy06eGMdktuDu9Qf+JmKl3SWM91qzVcN9tAbEYkwMaq0tyb1m/To5kP170el/BK8/qa6sJr70ydf+T/Uu5ab+Oo/lS0AkUBpIFWlZ9WPhxpse/PHO7YbOOczjL0vZV2lNxPPtG73dYXM+xvm2znrOl83tidoqCwMBgYXsPFB0on5S6pr+eK5TKuW67lgvaKvF8mL1dtfTL32FHxRdyx3cQpg7m4x9sCXKkTIzA4LDH44zWdzaUf71hv5rTG4uyzcusybxSX7aThbMQ8XgCYAp3rzTTQOiIh9PNlzY3FSuZxrzjme1Y7uGS6kjsWO4jPjM4FVjRZsvD4kO9XtTZzQn82NyzWc0B7AmZh6gA/hOYSGhfw9YbOVnarj+S7800AL2BIsxUAbWNToj7bhBuQmZcOsFdoKUC74rGheCwXmqAIQTc9jQcrADIAAAAASUVORK5CYII=);background-image:url(/wiki/resources/src/mediawiki.action/images/green-checkmark.png?d94f1)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}</style><meta name="ResourceLoaderDynamicStyles" content="">
+<script async="" src="./Usb ws2812 - BitWizard WIKI_files/load(1).php"></script>
+<meta name="generator" content="MediaWiki 1.27.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="https://bitwizard.nl/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://bitwizard.nl/wiki/opensearch_desc.php" title="BitWizard WIKI (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://bitwizard.nl/wiki/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="BitWizard WIKI Atom feed" href="https://bitwizard.nl/wiki/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script src="./Usb ws2812 - BitWizard WIKI_files/load(2).php"></script></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Usb_ws2812 rootpage-Usb_ws2812 skin-metrolook action-view">
+
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body overthrow" role="main">
+			<a id="top"></a>
+
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Usb ws2812</h1>
+									<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From BitWizard WIKI</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="https://bitwizard.nl/wiki/Usb_ws2812#mw-head">navigation</a>, 											<a href="https://bitwizard.nl/wiki/Usb_ws2812#p-search">search</a>
+									</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="thumb tright"><div class="thumbinner" style="width:302px;"><a href="https://bitwizard.nl/wiki/File:Ws2812.jpg" class="image"><img alt="The USB_WS2812 board" src="./Usb ws2812 - BitWizard WIKI_files/300px-Ws2812.jpg" width="300" height="225" class="thumbimage" srcset="/wiki/images/thumb/7/75/Ws2812.jpg/450px-Ws2812.jpg 1.5x, /wiki/images/7/75/Ws2812.jpg 2x"></a>  <div class="thumbcaption"><div class="magnify"><a href="https://bitwizard.nl/wiki/File:Ws2812.jpg" class="internal" title="Enlarge"></a></div>The USB_WS2812 board</div></div></div>
+<p>This is the documentation page for the USB_WS2812 board. That you can buy in the <a rel="nofollow" class="external text" href="http://www.bitwizard.nl/shop/index.php?route=product/product&amp;product_id=161&amp;search=ws2812">BitWizard shop</a>.
+</p>
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2><span class="toctoggle">&nbsp;[<a href="https://bitwizard.nl/wiki/Usb_ws2812#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Overview"><span class="tocnumber">1</span> <span class="toctext">Overview</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Assembly_instructions"><span class="tocnumber">2</span> <span class="toctext">Assembly instructions</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="https://bitwizard.nl/wiki/Usb_ws2812#External_resources"><span class="tocnumber">3</span> <span class="toctext">External resources</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Datasheets"><span class="tocnumber">3.1</span> <span class="toctext">Datasheets</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Additional_software"><span class="tocnumber">4</span> <span class="toctext">Additional software</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Related_projects"><span class="tocnumber">4.1</span> <span class="toctext">Related projects</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Pinout"><span class="tocnumber">5</span> <span class="toctext">Pinout</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="https://bitwizard.nl/wiki/Usb_ws2812#wiring"><span class="tocnumber">5.1</span> <span class="toctext">wiring</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="https://bitwizard.nl/wiki/Usb_ws2812#LEDs"><span class="tocnumber">5.2</span> <span class="toctext">LEDs</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Button"><span class="tocnumber">5.3</span> <span class="toctext">Button</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Jumper_settings"><span class="tocnumber">6</span> <span class="toctext">Jumper settings</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Protocol"><span class="tocnumber">7</span> <span class="toctext">Protocol</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="https://bitwizard.nl/wiki/Usb_ws2812#specifying_pixel_colors"><span class="tocnumber">7.1</span> <span class="toctext">specifying pixel colors</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="https://bitwizard.nl/wiki/Usb_ws2812#list_of_commands"><span class="tocnumber">7.2</span> <span class="toctext">list of commands</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="https://bitwizard.nl/wiki/Usb_ws2812#help"><span class="tocnumber">7.2.1</span> <span class="toctext">help</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="https://bitwizard.nl/wiki/Usb_ws2812#pix"><span class="tocnumber">7.2.2</span> <span class="toctext">pix</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="https://bitwizard.nl/wiki/Usb_ws2812#lshift_and_rshift"><span class="tocnumber">7.2.3</span> <span class="toctext">lshift and rshift</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="https://bitwizard.nl/wiki/Usb_ws2812#rainbow"><span class="tocnumber">7.2.4</span> <span class="toctext">rainbow</span></a></li>
+<li class="toclevel-3 tocsection-19"><a href="https://bitwizard.nl/wiki/Usb_ws2812#white"><span class="tocnumber">7.2.5</span> <span class="toctext">white</span></a></li>
+<li class="toclevel-3 tocsection-20"><a href="https://bitwizard.nl/wiki/Usb_ws2812#black"><span class="tocnumber">7.2.6</span> <span class="toctext">black</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="https://bitwizard.nl/wiki/Usb_ws2812#color"><span class="tocnumber">7.2.7</span> <span class="toctext">color</span></a></li>
+<li class="toclevel-3 tocsection-22"><a href="https://bitwizard.nl/wiki/Usb_ws2812#fade"><span class="tocnumber">7.2.8</span> <span class="toctext">fade</span></a></li>
+<li class="toclevel-3 tocsection-23"><a href="https://bitwizard.nl/wiki/Usb_ws2812#uid"><span class="tocnumber">7.2.9</span> <span class="toctext">uid</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="https://bitwizard.nl/wiki/Usb_ws2812#rbl"><span class="tocnumber">7.2.10</span> <span class="toctext">rbl</span></a></li>
+<li class="toclevel-3 tocsection-25"><a href="https://bitwizard.nl/wiki/Usb_ws2812#bitsperled"><span class="tocnumber">7.2.11</span> <span class="toctext">bitsperled</span></a></li>
+<li class="toclevel-3 tocsection-26"><a href="https://bitwizard.nl/wiki/Usb_ws2812#write"><span class="tocnumber">7.2.12</span> <span class="toctext">write</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-27"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Future_hardware_enhancements"><span class="tocnumber">8</span> <span class="toctext">Future hardware enhancements</span></a></li>
+<li class="toclevel-1 tocsection-28"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Future_software_enhancements"><span class="tocnumber">9</span> <span class="toctext">Future software enhancements</span></a></li>
+<li class="toclevel-1 tocsection-29"><a href="https://bitwizard.nl/wiki/Usb_ws2812#Changelog"><span class="tocnumber">10</span> <span class="toctext">Changelog</span></a>
+<ul>
+<li class="toclevel-2 tocsection-30"><a href="https://bitwizard.nl/wiki/Usb_ws2812#1.0"><span class="tocnumber">10.1</span> <span class="toctext">1.0</span></a></li>
+<li class="toclevel-2 tocsection-31"><a href="https://bitwizard.nl/wiki/Usb_ws2812#1.1"><span class="tocnumber">10.2</span> <span class="toctext">1.1</span></a></li>
+<li class="toclevel-2 tocsection-32"><a href="https://bitwizard.nl/wiki/Usb_ws2812#1.2"><span class="tocnumber">10.3</span> <span class="toctext">1.2</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Overview">Overview</span></h2>
+<p>This board enables you to drive up to 600 WS2812 fullcolor RGB leds. These leds are sometimes called "neopixels". The board can drive up to 75 leds in in 8 strings. Due to the way things are implemented it is not possible to drive a single string of say 600 leds. Furthermore you would not want that: for each led on a string there is a fixed amount of time necessary for sending its data. Too many leds and the refresh rate has to drop!
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Assembly_instructions">Assembly instructions</span></h2>
+<p>None: the board comes fully assembled.
+</p>
+<h2><span class="mw-headline" id="External_resources">External resources</span></h2>
+<h3><span class="mw-headline" id="Datasheets">Datasheets</span></h3>
+<p><a rel="nofollow" class="external text" href="http://www.bitwizard.nl/pdf/WS2812B.pdf">The datasheet of the WS2812B chip/led.</a>
+</p>
+<h2><span class="mw-headline" id="Additional_software">Additional software</span></h2>
+<h3><span class="mw-headline" id="Related_projects">Related projects</span></h3>
+<h2><span class="mw-headline" id="Pinout">Pinout</span></h2>
+<p>The USB connector is a standard micro USB connector. 
+</p><p>Pinout of the 16-pin header: 
+</p>
+<table border="1">
+<tbody><tr>
+<th> function </th>
+<th> pin </th>
+<th> pin </th>
+<th> function
+</th></tr>
+<tr>
+<td> GND </td>
+<td> 1 </td>
+<td> 2 </td>
+<td> D0 </td>
+<td> Data for led-chain 0.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 3 </td>
+<td> 4 </td>
+<td> D1 </td>
+<td> Data for led-chain 1.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 5 </td>
+<td> 6 </td>
+<td> D2 </td>
+<td> Data for led-chain 2.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 7 </td>
+<td> 8 </td>
+<td> D3 </td>
+<td> Data for led-chain 3.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 9 </td>
+<td> 10 </td>
+<td> D4 </td>
+<td> Data for led-chain 4.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 11 </td>
+<td> 12 </td>
+<td> D5 </td>
+<td> Data for led-chain 5.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 13 </td>
+<td> 14 </td>
+<td> D6 </td>
+<td> Data for led-chain 6.
+</td></tr>
+<tr>
+<td> GND </td>
+<td> 15 </td>
+<td> 16 </td>
+<td> D7 </td>
+<td> Data for led-chain 7.
+</td></tr>
+</tbody></table>
+<p>Note, pin one of this connector is bottom-right when the logo is right-side up. Pin 16 is top-left. All the pins on the right are all ground, the pins on the left are the data pins. 
+</p><p>Or closer resembling the layout on the board: 
+</p>
+<table border="1">
+<tbody><tr>
+<th> function </th>
+<th> pin </th>
+<th> pin </th>
+<th> function
+</th></tr>
+<tr>
+<td> D7 </td>
+<td> 16 </td>
+<td> 15 </td>
+<td> GND </td>
+<td> two pins for led-chain 7.
+</td></tr>
+<tr>
+<td> D6 </td>
+<td> 14 </td>
+<td> 13 </td>
+<td> GND </td>
+<td> two pins for led-chain 6.
+</td></tr>
+<tr>
+<td> D5 </td>
+<td> 12 </td>
+<td> 11 </td>
+<td> GND </td>
+<td> two pins for led-chain 5.
+</td></tr>
+<tr>
+<td> D4 </td>
+<td> 10 </td>
+<td>  9 </td>
+<td> GND </td>
+<td> two pins for led-chain 4.
+</td></tr>
+<tr>
+<td> d3 </td>
+<td>  8 </td>
+<td>  7 </td>
+<td> GND </td>
+<td> two pins for led-chain 3.
+</td></tr>
+<tr>
+<td> D2 </td>
+<td>  6 </td>
+<td>  5 </td>
+<td> GND </td>
+<td> two pins for led-chain 2.
+</td></tr>
+<tr>
+<td> D1 </td>
+<td>  4 </td>
+<td>  3 </td>
+<td> GND </td>
+<td> two pins for led-chain 1.
+</td></tr>
+<tr>
+<td> D0 </td>
+<td>  2 </td>
+<td>  1 </td>
+<td> GND </td>
+<td> two pins for led-chain 0.
+</td></tr>
+</tbody></table>
+<p><br>
+Each pin controls a number of leds. On the current version that number is 384. On a previous version it was 75. Let's call that number "N". You can configure the number of leds per string up to the maximum of the board. 
+</p>
+<table border="1">
+<tbody><tr>
+<th> pin  </th>
+<th> leds
+</th></tr>
+<tr>
+<td> D0 </td>
+<td> 0 - N-1
+</td></tr>
+<tr>
+<td> D1 </td>
+<td> N - 2*N -1
+</td></tr>
+<tr>
+<td> D2 </td>
+<td> 2*N - 3 * N-1
+</td></tr>
+<tr>
+<td> D3 </td>
+<td> 3*N - 4 * N-1
+</td></tr>
+<tr>
+<td> D4 </td>
+<td> 4*N - 5 * N-1
+</td></tr>
+<tr>
+<td> D5 </td>
+<td> 5*N - 6 * N-1
+</td></tr>
+<tr>
+<td> D6 </td>
+<td> 6*N - 7 * N-1
+</td></tr>
+<tr>
+<td> D7 </td>
+<td> 7*N - 8 * N-1
+</td></tr>
+</tbody></table>
+<p>There is also a three-pin test-connector. It has Ground-data-VCC as the pinout. The data pin is "D0" on the big connector.  This will use the USB-5V for the leds. As each led consumes up to 60mA, you are only allowed to power up 8 leds through this connector before you hit the USB 500mA currentlimit. But this could be an easy way to quickly test led-strips if they work, by programming for example a walking led, you verify each of the leds in sequence. 
+</p><p><br>
+Please ignore the other connectors on the board. There is SWD: Single Wire Debug. This helps us develop software. For hacking: pin1 is 3V3 and pin 3 is GND. There is also a connector SPI. This was meant to allow this board to prototype getting the led-data over SPI, or possibly control other modules over SPI.
+</p>
+<h3><span class="mw-headline" id="wiring">wiring</span></h3>
+<p>Your WS2812 led string has three wires. One is usually marked "GND" or "V-", one is marked "VCC" or "V+" and the last is the data-in, marked "D", "DI", "I", "IN" or "Din". 
+</p><p>Our WS2812 board has a three pin ground-data-vcc connector. This is for "quick test" purposes: The usb powersupply of the board is not able to provide current for more than a few leds (about ten). The quick test connector has pinout ground-data-vcc, just like most WS2812 led strips. If you have the board upright, USB on the left, bitwizard logo correctly oriented, pin 1 is on the right. Take care not to reverse your led strip: It kills the leds instantly. 
+</p><p>When you are ready to connect longer strips, you need to have a separate 5V supply for the led strip. Connect the 0 and 5V of the powersupply to the GND (V-) and VCC (V+) of the led strip. Then connect the GND (V-) Of the led strip to the GND of the USB_WS2812 board. And connect the Din of the led strip to one of the data pins on the USB_WS2812 board.
+</p><p>The 8 datalines count from bottom to top, D0..D7. The datalines are on the left (next to the resistors), and the GND for each strip is on the right (next to our logo).
+</p>
+<h3><span class="mw-headline" id="LEDs">LEDs</span></h3>
+<p>There are two leds. One is the power led. It should be lit whenever the USB is connected. The other should blink every two seconds (one second on, one second off).
+</p>
+<h3><span class="mw-headline" id="Button">Button</span></h3>
+<p>There is also a button on the board. If you press the button and then power up the board, it will come up in DFU mode, allowing you to upgrade the firmware of the board.
+</p>
+<h2><span class="mw-headline" id="Jumper_settings">Jumper settings</span></h2>
+<p>This board has no jumpers. 
+</p><p><br>
+</p>
+<h2><span class="mw-headline" id="Protocol">Protocol</span></h2>
+<p>When you connect the board to your PC or raspberry PI, you will get a virtual com port. You can use your favorite communications program to talk to the device. (I personally use "kermit" because I've been using that for over 30 years. "Minicom" is also a good option) 
+</p><p><br>
+</p>
+<h3><span class="mw-headline" id="specifying_pixel_colors">specifying pixel colors</span></h3>
+<p>Adressable leds are starting to appear that have 32 bits driving RGBW 4 different color leds, while the original WS2812 leds have 24 bits driving RGB 3 colored leds. 
+</p><p>On a hardware level WS2812 leds want the data in GRB order. Because everybody says "RGB" it is easier to memorize that the order of the colors are RGB. So the board translates this for you. 
+</p><p>So when you need to specify a color for a WS2812 (or compatible 24-bit) led, you specify rrggbb: Two hex digits for each color. You may omit leading zeros if you want, to the firmware in your usb-ws2812 it is just a number. 
+</p><p>To keep existing software compatible with this, the format for 32-bit leds is WRGB: you specify 8 hex digits, wwrrggbb. Again, leading zeros may be omitted, so when you just specify rrggbb, the white led simply won't be driven. 
+</p>
+<h3><span class="mw-headline" id="list_of_commands">list of commands</span></h3>
+<p>The board supports the following commands: 
+</p>
+<h4><span class="mw-headline" id="help">help</span></h4>
+<p>Print a list of supported commands, and also the compilation time of the firmware. 
+You might see a few commands that are there for debugging purposes. Consider those not described here as "do not use". 
+</p>
+<h4><span class="mw-headline" id="pix">pix</span></h4>
+<pre>pix &lt;num&gt; &lt;color&gt;
+</pre>
+<p>Set pixel "num" to color "color". Color is specified in 6 hexadecimal digits specifying the color in RGB order. Specifying 102030 will set the red component to 0x10, or about 1/16th of full intensity, the green component to 0x20/0xff or aobut 1/8th of full intensity and blue to about 3/16th. 
+</p>
+<h4><span class="mw-headline" id="lshift_and_rshift">lshift and rshift</span></h4>
+<p>Shift a range of pixels one pixel left (towards the controller) or right (away from the controller). 
+</p><p>There are three arguments. The starting position and the number of pixels to involve in the shift and the number of pixels to shift (i.e. shift by 3 pixels). Default is to start at zero and "all pixels", and just one position. 
+</p><p>example: 
+</p>
+<pre>lshift 50 60 3
+</pre>
+<p>will shift pixels 50-109 by three pixels. (pixel 50 gets the value from pixel 53, 51 from 54 etc.). 
+The maximum number of pixels you can shift in one go is 10 at the moment. 
+</p><p>If you give only one argument, the starting position defaults to zero, if you give two arguments, the first is the starting position the second is the number of pixels.
+</p>
+<h4><span class="mw-headline" id="rainbow">rainbow</span></h4>
+<p>Create a rainbow color effect. 
+</p>
+<pre>  rainbow [start] [nleds]
+</pre>
+<p>will create a rainbow starting at the led "start" and extend over "nleds" leds. The rainbow starts with red, fades via yellow, green, cyan, blue, violet back to red, so it is cyclic. 
+</p>
+<h4><span class="mw-headline" id="white">white</span></h4>
+<p>will set all leds to white. 
+</p>
+<h4><span class="mw-headline" id="black">black</span></h4>
+<p>will set all leds  off (black). 
+</p>
+<h4><span class="mw-headline" id="color">color</span></h4>
+<p>sets a fixed color. 
+</p>
+<pre> color &lt;color&gt; [start] [nleds]
+</pre>
+<p>Sets "nleds" starting at "start" to the color specified by "color". 
+</p>
+<h4><span class="mw-headline" id="fade">fade</span></h4>
+<p>creates a fade from one color to another color. 
+</p>
+<pre> fade &lt;start&gt; &lt;nleds&gt; &lt;color1&gt; &lt;color2&gt;
+</pre>
+<p><br>
+This is one of the latest commands added. Some of the boards in the field do not have this yet.
+</p>
+<h4><span class="mw-headline" id="uid">uid</span></h4>
+<p>print the unique identifier for this board. 
+</p><p>Some chips have a Unique identifier on board. This one does. It gets formatted to readable ascii and printed with this command. If you have multiple boards, you can use this to keep them apart.
+</p><p><br>
+</p>
+<h4><span class="mw-headline" id="rbl">rbl</span></h4>
+<p>Reset to BootLoader. 
+</p><p>Should you need to upgrade the firmware, this will Reset the device into the BootLoader. On older versions you had to keep the button pressed while plugging the device into the USB cable. That would still be the recovery procedure if say a firmware is downloaded that crashes before it provides the virtual com port.
+</p>
+<h4><span class="mw-headline" id="bitsperled">bitsperled</span></h4>
+<p>Without an argument it will print the current setting. If you provide an argument you can set it. Only 24 and 32 are currently allowed. 
+</p>
+<h4><span class="mw-headline" id="write">write</span></h4>
+<p>write the current settings to non volatile memory so that they will apply after the next powercycle. In the past, this module wrote changed settings to flash immediately. However for consistency we're moving to just modifying the active settings with the commands and then requiring a "write" to make these settings permanent. 
+</p><p>Currently "bitsperled" is the only setting that requires the write.
+</p>
+<h2><span class="mw-headline" id="Future_hardware_enhancements">Future hardware enhancements</span></h2>
+<p>None known yet. (Let us know if you have a request). 
+</p>
+<h2><span class="mw-headline" id="Future_software_enhancements">Future software enhancements</span></h2>
+<p>None known yet. 
+</p>
+<h2><span class="mw-headline" id="Changelog">Changelog</span></h2>
+<p>This is the HARDWARE changelog. 
+</p>
+<h3><span class="mw-headline" id="1.0">1.0</span></h3>
+<ul><li> nov 2015 Initial version</li></ul>
+<h3><span class="mw-headline" id="1.1">1.1</span></h3>
+<ul><li> dec 2015 minor fixes. </li></ul>
+<h3><span class="mw-headline" id="1.2">1.2</span></h3>
+<ul><li> dec 2016 added SPI connector.</li></ul>
+
+<!-- 
+NewPP limit report
+Cached time: 20220328100323
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.006 seconds
+Real time usage: 0.026 seconds
+Preprocessor visited node count: 127/1000000
+Preprocessor generated node count: 132/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+
+<!-- Saved in parser cache with key wikidb:pcache:idhash:1837-0!*!*!!en!5!* and timestamp 20220328100323 and revision id 4652
+ -->
+</div>					<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;oldid=4652">https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;oldid=4652</a>"					</div>
+				<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>				<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+				<hr>
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 23 August 2021, at 11:12.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="https://bitwizard.nl/wiki/BitWizard_WIKI:Privacy_policy" title="BitWizard WIKI:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="https://bitwizard.nl/wiki/BitWizard_WIKI:About" title="BitWizard WIKI:About">About BitWizard WIKI</a></li>
+											<li id="footer-places-disclaimer"><a href="https://bitwizard.nl/wiki/BitWizard_WIKI:General_disclaimer" title="BitWizard WIKI:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-poweredbyico">
+							<a href="https://www.mediawiki.org/"><img src="./Usb ws2812 - BitWizard WIKI_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/wiki/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /wiki/resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31"></a>						</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+								<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+		<div id="mw-head">
+			<div id="hamburgerIcon">
+				<img class="hamburger" alt="" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif">
+			</div>
+
+							<div style="padding-left:10px;">
+					<div class="lighthover siteLogoBar">
+						<div class="onhoverbg">
+							<h4 class="title-name">
+								<a href="https://bitwizard.nl/wiki/Main_Page">
+									<span class="title-name">
+										BitWizard WIKI									</span>
+								</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+															<div class="lighthover siteLogoBar">
+								<img class="line" alt="" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif">
+									</div>
+																			<div class="lighthover siteLogoBar">
+								<img class="downarrow" alt="" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif">
+									</div>
+							
+			<div class="vectorMenu" id="usermenu">
+				<div class="no-js">
+					<a href="https://bitwizard.nl/wiki/Usb_ws2812#" class="user-icon-container">
+						<span id="username-top">
+							<span id="username-text">Guest</span>
+							<span class="username-space spacer"> </span>
+							<span id="userIcon20"><img class="userIcon20" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif" alt=""></span>
+							<span class="spacer"> </span>
+							<span id="userIcon40"><img class="userIcon40" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif" alt=""></span>
+						</span>
+					</a>
+					<div class="menu personal-menu">
+											<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h5 id="p-personal-label">Personal tools</h5>
+						<ul>
+							<li id="pt-login"><a href="https://bitwizard.nl/wiki/index.php?title=Special:UserLogin&amp;returnto=Usb+ws2812" title="You are encouraged to log in; however, it is not mandatory [alt-shift-o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+										</div>
+				</div>
+			</div>
+			<div id="echoNotifications">
+				<ul>
+									</ul>
+			</div>
+
+			<div id="left-navigation">
+													<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h5 id="p-namespaces-label">Namespaces</h5>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="https://bitwizard.nl/wiki/Usb_ws2812" title="View the content page [alt-shift-c]" accesskey="c">Page</a></span></li>
+															<li id="ca-talk" class="new"><span><a href="https://bitwizard.nl/wiki/index.php?title=Talk:Usb_ws2812&amp;action=edit&amp;redlink=1" title="Discussion about the content page [alt-shift-t]" accesskey="t" rel="discussion">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h5 id="p-variants-label" tabindex="0">
+							<span>Variants</span><a href="https://bitwizard.nl/wiki/Usb_ws2812#" tabindex="-1"></a>
+						</h5>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h5 id="p-views-label">Views</h5>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="https://bitwizard.nl/wiki/Usb_ws2812">View</a></span></li>
+															<li id="ca-viewsource"><span><a href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;action=edit" title="This page is protected.
+You can view its source [alt-shift-e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;action=history" title="Past revisions of this page [alt-shift-h]" accesskey="h">History</a></span></li>
+													</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu actionmenu emptyPortlet" aria-labelledby="p-cactions-label" style="">
+						<h5 id="p-cactions-label" tabindex="0"><span>Actions</span><a href="https://bitwizard.nl/wiki/Usb_ws2812#" tabindex="-1"></a></h5>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+								</div>
+
+									<img class="searchbar" alt="" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif">
+								<img class="editbutton" alt="" src="./Usb ws2812 - BitWizard WIKI_files/Transparent.gif">
+
+
+			<div id="right-navigation">
+															<div id="p-search" role="search">
+							<h5>
+								<label for="searchInput">Search</label>
+							</h5>
+
+							<form action="https://bitwizard.nl/wiki/index.php" id="searchform">
+								<div id="simpleSearch">
+								<input type="search" name="search" placeholder="Search" title="Search BitWizard WIKI [alt-shift-f]" accesskey="f" id="searchInput" autocomplete="off" tabindex="1"><input type="hidden" value="Special:Search" name="title"><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchButton" class="searchButton">								</div>
+							</form>
+						</div>
+													</div>
+		</div>
+
+							<div id="mw-panel" class="collapsible-nav">
+												<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="https://bitwizard.nl/wiki/Main_Page" title="Visit the main page"></a></div>
+																<div class="portal expanded" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+				<h5 id="p-navigation-label" tabindex="0"><a href="https://bitwizard.nl/wiki/Usb_ws2812#" aria-haspopup="true" aria-controls="p-navigation-list" role="button" aria-pressed="true" aria-expanded="true">Navigation</a></h5>
+									<div class="body" style="display: block;">
+												<ul id="p-navigation-list">
+						<li id="n-mainpage-description"><a href="https://bitwizard.nl/wiki/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z">Main page</a></li><li id="n-recentchanges"><a href="https://bitwizard.nl/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li><li id="n-randompage"><a href="https://bitwizard.nl/wiki/Special:Random" title="Load a random page [alt-shift-x]" accesskey="x">Random page</a></li><li id="n-help"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>					</ul>
+							</div>
+		</div>
+						<div class="portal collapsed" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+				<h5 id="p-tb-label" tabindex="0"><a href="https://bitwizard.nl/wiki/Usb_ws2812#" aria-haspopup="true" aria-controls="p-tb-list" role="button" aria-pressed="false" aria-expanded="false">Tools</a></h5>
+									<div class="body">
+												<ul id="p-tb-list">
+						<li id="t-whatlinkshere"><a href="https://bitwizard.nl/wiki/Special:WhatLinksHere/Usb_ws2812" title="A list of all wiki pages that link here [alt-shift-j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="https://bitwizard.nl/wiki/Special:RecentChangesLinked/Usb_ws2812" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="https://bitwizard.nl/wiki/Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;oldid=4652" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="https://bitwizard.nl/wiki/index.php?title=Usb_ws2812&amp;action=info" title="More information about this page">Page information</a></li>					</ul>
+							</div>
+		</div>
+					</div>
+			
+							<div class="top-tile-bar-inner-container">
+					<div class="topleft">
+						<div class="tilebar" id="bartile">
+							<div id="tilegrouptable">
+								<div id="tilegroup">
+																	</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					</div>
+
+		<div id="mw-panel-right" class="noprint">
+					</div>
+
+		<script>(window.RLQ=window.RLQ||[]).push(function(){mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","skins.metrolook.collapsibleNav"]);});</script><script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":26});});</script>	
+
+<div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div></body></html>

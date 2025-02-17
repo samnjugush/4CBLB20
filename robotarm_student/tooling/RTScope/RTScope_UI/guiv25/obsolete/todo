@@ -1,0 +1,109 @@
+schaling plaatje met encoders: encoders worden niet in schaling betrokken?
+
+OK! QS_IFRAME pas op nul resetten bij de volgende herstart
+
+OK! triggering (de eerste draw is niet altijd de goede na een start met ingeschakelde trigger)
+solved?!
+
+OK! bij avaraging staat niet hetzelfde in beide scoopjes!
+1 maal signaal berekenen, afdrukken volgens scope settings!
+
+wat te doen als meting gestopt is en bv frame length wordt veranderd?
+
+averaging is gestopt en dan zetten we bv een signaal uit scope 2 in scope 1 erbij: op dat moment verandert de averaged grafiek in de laatste take??? geldt ook als we type signaal veranderen bv van spectrum naar tijdsignaal.
+
+gedaan 9 september 2002:
+
+OK! als er geen qads zijn -> afsluiten
+
+OK! qs.m toevoegen (ip release/renew)
+
+OK! multiple get en put gebruiken in boostmode
+
+gedaan 12 september 2002:
+
+OK! encoders getest, zeroise knopje gemaakt voor encoder initialisatie on demand
+
+gedaan 13 september 2002:
+
+OK! generator velden handmatig te editen
+
+gedaan 17, 18 september 2002:
+
+OK! low-pass filtering random signal 500, 1000 elliptic filters in fungen
+
+OK! frequency slider/disp aangepast aan deze frequenties
+
+gedaan januari 2003
+
+meet-engine gescheiden van Matlab (shared memory in dll's)
+fir filters met variablele afbreekfrequentie in fungen
+aqi-support (met calibratie en antialiasing filters)
+--- "saven" en "loaden" moet nog worden aangepast voor AA-knopje (en fungen!)
+
+offset-calibratie met aa-filters/ingangsgevoeligheid moet nog geimplementeerd 	worden.
+aa-filters moeten uitgezet worden bij initialisatie, ingangsgevoeligheid op 0. 	|gedaan 3 februari 2003
+
+OK! --- cumulatief psd
+
+als je bij lage frequentie/sinus aan de frequentie draait knalt remez eruit. opgelost 3 febr 2003? Jawel!
+
+OK! --- als je een dac disabled blijft de laatste dac-waarde actief. Moet dat? opgelost 3 februari 2003 Nee dus, solved 4 februari 2003! nog niet opgelost! Was QAD firmware bug!!!
+
+nullen van encoders knalt eruit. opgelost 3 februari 2003? encoder qad wordt niet genuld!
+opgelost 16 april 2003.
+
+OK! --- motor knalt eruit bij afsluiten van qadscope. Worden de dac's wel 
+netjes gereset?
+
+--- crosspowerspectra netjes schalen.
+
+OK! staat dac-spanning tijdens calibreren op 0??? nog te testen, moet opgelost zijn in aqi!
+
+OK! --- remez knalt er uit als je de frequentie naar rechts sleept!
+
+OK! clipping kanaal 2 wordt rood bij <inst>
+
+OK! clipping aqi wordt niet goed gedaan, pas bij 2x zo grote spanning treedt clipping op (logisch want de helft is gereserveerd om offsetsop te vangen). Signaleren van clipping gaat wel goed.
+
+OK! kleur van sommige controls gaat niet goed, b.v. uitzetten van alle signalen in scope -> donkergrijs
+
+OK! schaal van de fft één verschoven (zie tentamen) NEE!
+
+OK! Remez probleem opgelost 9 maart 2004 (oude functie-generator er tijdelijk instoppen i.v.m. remez-probleem?!)
+
+OK! trigger level aanpassen op range!
+
+OK! Opgelost 9 maart 2004. eerste take met preroll is niet goed: het preroll stuk deugd niet! Daardoor gaat middelen ook fout. Moet er niet één loze take gedaan worden om history te verzamelen voor de preroll???!!!
+
+1e sample loopback input is niet goed in eerste frame. Ligt dit aan de functie-generator of aan de meetbuffer?
+OK! Was alleen in simulatie zo. (TD_DIRECT/TD_CACHED i.p.v. TD_STORED). DIT UIT ZICH IN EEN EXPERIMENT OOK ALS TWEE IDENTIEKE WAARDEN BIJ LOOPBACK VOOR T=0!!! Moet toch een keer onderzocht worden.
+
+freeze en hold state voor beide scope goed restoren na load file.
+
+to do: swept sine, save generator state, controller
+
+OK! double buffering aanzetten: set(gcf,'DoubleBuffer','on')
+
+OK! bij weergeven encoders index van kanaal niet goed (5 en 6 -> 1 en 2)
+
+31 januaru 2005: bij linked measurement begint het stuursignaal niet altijd bij de waarde die hoort bij t=0
+(in ieder geval niet in een simulated experiment)
+
+OK! 7 feb 2005: log schaal werkt nu ook bij ESD en PS
+
+OK! 7 feb 2005: meting wordt niet meer gestopt bij scope memory!
+
+7 feb 2005: hanning window scaling?! anders voor fft, esd, psd, ps??? eigen psd routine maken op basis van fft?!
+
+22 feb 2005: fg_obsiv toevoegen aan shared memory in tde_gate!!! mag niet zomaar worden opgevraagd in set_freq e.d.!
+
+OK! 19 september 2005: in tdext, tde_get_range, simulink-case added for rtscope-crashes-matlab on range change with aqi. Solved September 24th, 2005
+
+OK! 19 september 2005: with Qad simulator incomm read fails, no signal generator. Solved by recompiling everything right!
+
+24 september 2005: wordt frf goed gesaved ja of nee? in RTscope???
+
+2 oktober 2005: ingangen moeten in usb-versie 1 stapje vooruit berekend worden!
+
+4 oktober, 2005: encoder reset, aa filter settings en pause in de acquisitie...

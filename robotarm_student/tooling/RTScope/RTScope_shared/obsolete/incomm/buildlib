@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export curdir=$(pwd)
+echo $curdir
+gcc -O2 -g -fPIC -c -fno-stack-protector libincomm_server.c
+gcc -shared -Wl,-soname,libincomm_server.so.1 -o libincomm_server.so.1.0 libincomm_server.o -lc -lm
+mv libincomm_server.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libincomm_server.so.1.0 libincomm_server.so
+ln -sf libincomm_server.so.1.0 libincomm_server.so.1
+
+cd $curdir
+gcc -O2 -g -fPIC -c -fno-stack-protector libincomm_client.c
+gcc -shared -Wl,-soname,libincomm_client.so.1 -o libincomm_client.so.1.0 libincomm_client.o -lc -lm
+mv libincomm_client.so.1.0 /usr/lib/.
+
+cd /usr/lib
+ldconfig -v -n
+ln -sf libincomm_client.so.1.0 libincomm_client.so
+ln -sf libincomm_client.so.1.0 libincomm_client.so.1
