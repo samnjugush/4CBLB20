@@ -22,3 +22,7 @@ specifically for FRF stuff. So use Ebox_RTScope for measurement of the
 system AND FRF analysis.
 -I'd recommend first developing the software and controllers with lpos and 
 then adding it to the ebox for testing on hardware. 
+
+For coding as a group without changing the original files, I have created
+a simulink copy of the lpos called "lposSimulinkModelForTesting.slx". Please
+make the changes and additions to this file. 
