@@ -1,0 +1,56 @@
+28.02.2025 Experiment - Bartu
+In this experiment, I tried to obtain the open-loop transfer functions
+and the boundaries of the axes for the robot 11. Unfortuntely for measuring
+the Z axis I had to switch the robot to robot 8. Please see the end of the
+robot arm document for how to convert the figures to transfer functions.
+IMPORTANT: Please see the final chapter of this log.
+
+The following input is used to connect to Pi:
+p = raspi('10.55.0.1','pi','sperte123')
+--------------------------------------------------------------------------
+Open Loop Measurement R Settings:
+Range: -0.5 to 1.3
+Speed: 1
+Acceleration: 2
+Note: The boundaries of this is not that well tested.
+--------------------------------------------------------------------------
+Open Loop Measurement X settings:
+SUCCESSFUL TESTS:
+Test 1: range -0.5 to 0.5, speed 1, acc 3 (fig 1)
+Test 3: range -0.3 to 0.3, speed 1, acc 2 (fig 2)
+Test 5: range -0.5 to 0.5, speed 1, acc 2 (fig 3)(Careful with this range)
+Test 6: -0.4 to 0.4, speed 1, acc 2 (fig 4)
+
+Test 2: range -0.2 to 0.3, speed 1, acc 2 (FAIL)
+Test 4: range -0.6 to 0.6, speed 1, acc 2 (FAIL)
+The -0.5 to 0.5 bouundaries stopped working
+
+-------------------------------------------------------------------------
+Open Loop Measurement Z settings:
+1. -0.4 Immediately fails as boundary. Try -0.3 as lower limit
+Intermezzo: My laptop crashed while the robot was connected and running, which
+corrupted a lot of my files and also wasted an hour trying to debug and get 
+everything up to speed.
+2. I switched from Robot 11 to Robot 8 as 11 stopped working :)
+3. +1 is out of bounds. Trying 0.7: Also out of bounds.
+4. 0.5 is in bounds, but barely. Try 0.45
+5. Finally worked! Saved the data with v=1, acc=2, -0.3 to 0.45
+
+So, the only figure was obtained with velocity 1, accelearation 2 and 
+a boundary of -0.3 <-> 0.45 .More testing is needed for the Z-axis.
+-------------------------------------------------------------------------
+FRF Conversion
+- The final paragraph of the robot arm document describes the obtention of
+the FRF for a range of frequencies from a figure. Use the following command:
+
+[FRF, Hz] = RTScope_figure2FRF_data('figure name')
+
+- After the FRF vector and Hz vectors are obtained, use SHAPEIT by typing
+in shapeit to the comamnd window (please install this tool!!), by using this
+programme we can very easily tune a controller, and have visualization.
+As of 28.02.2025, this is my final work. I would like to look into the 
+controllers using shapeit, but this is only possible for me after 
+08.03.2025. Please contact me if you have any questions.
+
+Kind regards and happy Carnaval, 
+Bartu
