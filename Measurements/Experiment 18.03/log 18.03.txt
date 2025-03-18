@@ -1,0 +1,37 @@
+18.03.2025 Experiment - Stefan & Evelyn
+In this experiment, we will try to obtain the static friction, and if we have time left the viscous friction.
+
+--------------------------------------------------------------------------
+Measurement of static friction:
+Stefan connects to the robot arm, and initializes the robot arm. 
+We will perform three measurements of static friction, per axis (R, X, Z). This will be done by slowly increasing the voltage applied to the arm, until it starts moving, and then noting down what voltage was applied at the time of movement.
+
+Test 1: R-axis, minimum voltage of 0.1370
+Test 2: R-axis, minimum voltage of 0.1331 
+Test 3: R-axis, minimum voltage of 0.1342
+
+Test 1: X-axis, minimum voltage of 0.2300
+Test 2: X-axis, minimum voltage of 0.2264 
+Test 3: X-axis, minimum voltage of 0.2286
+
+Test 1: Z-axis, minimum voltage of 0.3373
+Test 2: Z-axis, minimum voltage of 0.3695 
+Test 3: Z-axis, minimum voltage of 0.3693
+
+After consulting a TA, it turns out we did not determine the minimum voltage, but just... a number. The friction number! But a dimensionless number nonetheless.
+
+\\For our first test here, the Scope started at t = -2 for some reason. It still gave the (probably) correct value of 0.14 volt, but it just started with a negative time. This problem did not reoccur.
+--------------------------------------------------------------------------
+Viscous friction testing:
+After consulting a TA about measuring the Viscous friction, we were given a proper explanation of how to measure this, so Stefan now has a good idea of how to obtain the viscous friction.
+
+-------------------------------------------------------------------------
+Acceleration Friction Testing:
+Stefan researched the feedforward material beforehand, and started by adding a block that compares the expected velocity to the measured velocity, and gives error based on this
+-------------------------------------------------------------
+
+Thusfar our belated Tuesday morning experiment session. We managed to determine the numbers needed for static friction,
+and did some measurements with regards to dynamic friction. Hopefully this data will be useful!
+
+With kind regards,
+Evelyn and Stefan
